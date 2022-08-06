@@ -1,0 +1,38 @@
+.alert {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px 15px;
+  background-color: #42ba96;
+  color: white;
+  border-radius: 0.5rem;
+  opacity: 0;
+}
+
+.invalid {
+  background-color: #df4759;
+}
+
+.display {
+  animation: slideright 4900ms forwards ease-in-out;
+}
+
+@keyframes slideright {
+  0% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+
+  20% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+}
