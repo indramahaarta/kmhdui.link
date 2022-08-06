@@ -20,7 +20,7 @@ function App() {
       setStatus(null);
       setMessage(null);
       setIsAlertOn(false);
-    }, 5000);
+    }, 3000);
 
     return () => {
       clearTimeout(timer);

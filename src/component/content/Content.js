@@ -85,38 +85,45 @@ const Content = (props) => {
         status: 0,
         message: "Link coppied to your clipboard",
       });
+      
       navigator.clipboard.writeText("https://kmhdui.link/" + customLinkValue);
       dispatchLink({ type: "RESET" });
       dispatchCustomLink({ type: "RESET" });
     } else {
-      setIsLoading(true);
-      const data = {
-        link: linkValue,
-        customLink: customLinkValue,
-      };
+      if (!isValidLink) {
+        props.onSubmitForm({ status: 1, message: "Enter a valid link!" });
+      } else if (!isValidCustomLink) {
+        props.onSubmitForm({ status: 1, message: "Enter a valid custom link!" });
+      } else if (formIsValid) {
+        setIsLoading(true);
+        const data = {
+          link: linkValue,
+          customLink: customLinkValue,
+        };
 
-      await fetch("https://kmhdui-link-api.herokuapp.com/api/addCustomLink", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-      })
-        .then((response) => {
-          return response.json();
+        await fetch("https://kmhdui-link-api.herokuapp.com/api/addCustomLink", {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
         })
-        .then((data) => {
-          props.onSubmitForm(data);
-          if (data.status === 0) {
-            setIsCoppyOn(true);
-          }
-        })
-        .catch((err) => {
-          props.onSubmitForm({ status: 1, message: "Server Error" });
-        });
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            props.onSubmitForm(data);
+            if (data.status === 0) {
+              setIsCoppyOn(true);
+            }
+          })
+          .catch((err) => {
+            props.onSubmitForm({ status: 1, message: "Server Error" });
+          });
 
-      setIsLoading(false);
+        setIsLoading(false);
+      }
     }
   }
 
@@ -164,10 +171,7 @@ const Content = (props) => {
           </div>
         </div>
         <div className={classes["form-input"]}>
-          <button
-            className={`${classes.btn} ${isCopyOn ? classes.copy : ""}`}
-            disabled={!formIsValid}
-          >
+          <button className={`${classes.btn} ${isCopyOn ? classes.copy : ""}`}>
             {btnContent}
           </button>
         </div>

@@ -1,5 +1,6 @@
 .home {
   height: 100vh;
+  min-height: 667px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -89,8 +90,7 @@
   color: white;
 }
 
-.btn:hover,
-.btn:focus {
+.btn:hover {
   cursor: pointer;
   background-color: #7fa0ce;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
