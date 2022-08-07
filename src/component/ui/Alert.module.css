@@ -14,7 +14,7 @@
 }
 
 .display {
-  animation: slideright 3000ms forwards ease-in-out;
+  animation: slideright 2500ms forwards ease-in-out;
 }
 
 @keyframes slideright {
