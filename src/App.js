@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import Content from "./component/content/Content";
+import NotFound from "./component/content/NotFound";
 import RedirectedPage from "./component/content/RedirectedPage";
 import Footer from "./component/footer/Footer";
 import Navbar from "./component/navbar/Navbar";
@@ -42,6 +43,12 @@ function App() {
             isAlertOn={isAlertOn}
             offAlert={offAlertHandler}
           />
+          <Footer />
+        </Route>
+        <Route path="/notfound" exact>
+        <Alert message={message} status={status} isAlertOn={isAlertOn} />
+          <Navbar />
+          <NotFound />
           <Footer />
         </Route>
         <Route path="/:customUrl/">
