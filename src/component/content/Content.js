@@ -85,7 +85,7 @@ const Content = (props) => {
         status: 0,
         message: "Link coppied to your clipboard",
       });
-      
+
       navigator.clipboard.writeText("https://kmhdui.link/" + customLinkValue);
       dispatchLink({ type: "RESET" });
       dispatchCustomLink({ type: "RESET" });
@@ -93,35 +93,61 @@ const Content = (props) => {
       if (!isValidLink) {
         props.onSubmitForm({ status: 1, message: "Enter a valid link!" });
       } else if (!isValidCustomLink) {
-        props.onSubmitForm({ status: 1, message: "Enter a valid custom link!" });
+        props.onSubmitForm({
+          status: 1,
+          message: "Enter a valid custom link!",
+        });
       } else if (formIsValid) {
         setIsLoading(true);
         const data = {
           link: linkValue,
           customLink: customLinkValue,
         };
+        let thereIsSameCustomLink = false;
 
-        await fetch("https://kmhdui-link-api.herokuapp.com/api/addCustomLink", {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-        })
-          .then((response) => {
-            return response.json();
-          })
+        await fetch("https://kmdui-link-default-rtdb.firebaseio.com/links.json")
+          .then((res) => res.json())
           .then((data) => {
-            props.onSubmitForm(data);
-            if (data.status === 0) {
-              setIsCoppyOn(true);
+            for (const i in data) {
+              const key = data[i];
+              if (key["customLink"] === customLinkValue) {
+                thereIsSameCustomLink = true;
+                break;
+              }
             }
-          })
-          .catch((err) => {
-            props.onSubmitForm({ status: 1, message: "Server Error" });
           });
 
+        if (thereIsSameCustomLink) {
+          props.onSubmitForm({
+            status: 1,
+            message: "Custom Link has been taken",
+          });
+        } else {
+          await fetch(
+            "https://kmdui-link-default-rtdb.firebaseio.com/links.json",
+            {
+              method: "POST",
+              body: JSON.stringify(data),
+              headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+              },
+            }
+          )
+            .then((response) => {
+              return response.json();
+            })
+            .then(() => {
+              props.onSubmitForm({
+                status: 0,
+                message: "Custom Link has been saved",
+              });
+              setIsCoppyOn(true);
+            })
+            .catch(() => {
+              props.onSubmitForm({ status: 1, message: "Server Error" });
+            });
+        }
         setIsLoading(false);
       }
     }
