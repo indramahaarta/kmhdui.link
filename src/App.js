@@ -37,7 +37,7 @@ function App() {
     <React.Fragment>
       <Switch>
         <Route path="/" exact>
-          <Alert message={message} status={status} isAlertOn={true} />
+          <Alert message={message} status={status} isAlertOn={isAlertOn} />
           <Navbar/>
           <Content
             onSubmitForm={submitFormHandler}
