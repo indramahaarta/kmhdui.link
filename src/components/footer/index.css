@@ -1,0 +1,46 @@
+.footer{
+    background-color: #EAE8DC;
+    padding: 1rem;
+}
+
+.label-name{
+    display: flex;
+}
+.label-name p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;    
+}
+
+.label-name img{
+    height: 63px;
+    margin: 0;
+}
+
+.location{
+    display: flex;
+}
+.location img{
+    height: 27px;
+}
+
+.media--icon {
+    margin-top: 10px;
+}
+.media--icon a{
+    margin-right: 17px;
+} 
+
+
+@media only screen and (min-width: 1024px) {
+
+}
+
+
+@media only screen and (max-width: 1023px) {
+   
+}
+
+
+
+

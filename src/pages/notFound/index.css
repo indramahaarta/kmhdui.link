@@ -1,0 +1,26 @@
+.not-found{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #F4F2EC;
+
+}
+
+.not-found h1{
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 70px;
+    line-height: 60px;
+}
+
+.sub--nf{
+    font-size: 25px;
+    font-weight: 300;
+}
+
+.sub--nf-decs{
+    font-size: 15px;
+    font-weight: 300;
+}
