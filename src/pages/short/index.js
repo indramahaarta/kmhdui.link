@@ -184,7 +184,9 @@ const Content = (props) => {
             <p className="mr-0.5 m-auto">kmhdui.link/</p>
             <input
               className={`input-short ${
-                isValidCustomLink === false ? "input-invalid" : ""
+                customLinkState.value.length === 0 || isValidCustomLink
+                  ? "input-url-fcs"
+                  : "input-invalid"
               }`}
               value={customLinkValue}
               id="custom-link"
