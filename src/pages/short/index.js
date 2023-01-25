@@ -73,11 +73,7 @@ const Content = (props) => {
 
   async function submitFormHandler(event) {
     event.preventDefault();
-    if (props.isAlertOn) {
-      props.offAlert();
-
-      setTimeout(() => {}, 200);
-    }
+    setIsLoading(true);
 
     if (isCopyOn) {
       setIsCoppyOn(false);
@@ -86,7 +82,7 @@ const Content = (props) => {
         message: "Link coppied to your clipboard",
       });
 
-      navigator.clipboard.writeText("https://kmhdui.link/" + customLinkValue);
+      navigator.clipboard.writeText("kmhdui.link/" + customLinkValue);
       dispatchLink({ type: "RESET" });
       dispatchCustomLink({ type: "RESET" });
     } else {
@@ -98,7 +94,6 @@ const Content = (props) => {
           message: "Enter a valid custom link!",
         });
       } else if (formIsValid) {
-        setIsLoading(true);
         const data = {
           link: linkValue,
           customLink: customLinkValue,
@@ -148,9 +143,9 @@ const Content = (props) => {
               props.onSubmitForm({ status: 1, message: "Server Error" });
             });
         }
-        setIsLoading(false);
       }
     }
+    setIsLoading(false);
   }
 
   let btnContent = isLoading ? "Loading..." : "Generate!";
@@ -197,7 +192,10 @@ const Content = (props) => {
               placeholder="Enter your short URL"
             ></input>
           </div>
-          <button className={`btn-gen font-Poppins ${isCopyOn ? "copy" : ""}`}>
+          <button
+            className={`btn-gen font-Poppins ${isCopyOn ? "copy" : ""}`}
+            disabled={isLoading}
+          >
             {btnContent}
           </button>
         </form>
