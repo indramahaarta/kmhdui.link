@@ -1,0 +1,16 @@
+.alerts {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.alerts-wrapper {
+  margin-top: 10px;
+  background: none;
+}
+
+.Toastify__close-button,
+.Toastify__close-button--light {
+  display: none !important;
+}

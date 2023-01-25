@@ -11,7 +11,7 @@ const NotFound = () => {
       </div>
       <div className="mt-5">
         <a
-          className="btn btn-gen btn-primary font-Poppins p-2"
+          className="btn btn-gen btn-primary font-Poppins p-3"
           href="/"
           role="button"
         >
