@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
-import Content from "./component/content/Content";
-import NotFound from "./component/content/NotFound";
-import RedirectedPage from "./component/content/RedirectedPage";
-import Footer from "./component/footer/Footer";
-import Navbar from "./component/navbar/Navbar";
-import Alert from "./component/ui/Alert";
+import Content from "./pages/short/index.js";
+import NotFound from "./pages/notFound/index.js";
+import RedirectedPage from "./pages/redirectPage";
+import Footer from "./components/footer/index.js";
+import Navbar from "./components/navbar";
+import Alert from "./components/alert";
+import 'tailwindcss/tailwind.css';
 
 function App() {
   const [status, setStatus] = useState();
@@ -37,7 +38,7 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <Alert message={message} status={status} isAlertOn={isAlertOn} />
-          <Navbar />
+          <Navbar/>
           <Content
             onSubmitForm={submitFormHandler}
             isAlertOn={isAlertOn}

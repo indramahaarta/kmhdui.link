@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
-import classes from "./Content.module.css";
+import "./index.css";
 
 const linkReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
@@ -153,55 +153,55 @@ const Content = (props) => {
     }
   }
 
-  let btnContent = isLoading ? "Loading..." : "Generate Link";
+  let btnContent = isLoading ? "Loading..." : "Generate!";
   if (isCopyOn) {
     btnContent = "Copy your custom url";
   }
 
+  console.log(isValidCustomLink);
   return (
-    <div className={classes.home}>
-      <div className={classes.title}>
-        <div>
-          <span className={classes.link}>Customizable</span> link shortener app
+    <div className="home-content m-auto">
+      <div className="sub-content">
+        <p className="sy-tag">Hello Again!👋 </p>
+        <div className="sy-tag-line">
+          <span>Keep it </span>
+          <span className="font-medium">simple</span>
+          <span> with customizable link</span>
+          <p>for KMHD UI</p>
         </div>
-        <div>
-          for <span className={classes.kmhdui}>KMHDUI.</span>
-        </div>
-      </div>
-      <form onSubmit={submitFormHandler} className={classes.form}>
-        <div className={classes["form-input"]}>
-          <input
-            id="long-link"
-            value={linkValue}
-            className={`${classes.input} ${
-              isValidLink === false ? classes["input-invalid"] : ""
-            }`}
-            onChange={linkChangeHandler}
-            placeholder="Enter your link here"
-          ></input>
-        </div>
-        <div className={classes["form-input"]}>
-          <div
-            className={`${classes.wrapper} ${classes.input} ${
-              isValidCustomLink === false ? classes["input-invalid"] : ""
-            }`}
-          >
-            <span>kmhdui.link/</span>
+
+        <div></div>
+        <form className="form-content" onSubmit={submitFormHandler}>
+          <div>
             <input
-              value={customLinkValue}
-              className={`${classes.input} ${classes.custom}`}
-              id="custom-link"
-              onChange={customLinkChangeHandler}
-              placeholder="Enter your custom link"
+              className={`input-round ${
+                linkState.value.length === 0 || linkState.isValid
+                  ? "input-url-fcs"
+                  : "input-invalid"
+              }`}
+              id="long-link"
+              value={linkValue}
+              onChange={linkChangeHandler}
+              placeholder="Enter your long URL"
             ></input>
           </div>
-        </div>
-        <div className={classes["form-input"]}>
-          <button className={`${classes.btn} ${isCopyOn ? classes.copy : ""}`}>
+          <div className="flex short-input">
+            <p className="mr-0.5 m-auto">kmhdui.link/</p>
+            <input
+              className={`input-short ${
+                isValidCustomLink === false ? "input-invalid" : ""
+              }`}
+              value={customLinkValue}
+              id="custom-link"
+              onChange={customLinkChangeHandler}
+              placeholder="Enter your short URL"
+            ></input>
+          </div>
+          <button className={`btn-gen font-Poppins ${isCopyOn ? "copy" : ""}`}>
             {btnContent}
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
