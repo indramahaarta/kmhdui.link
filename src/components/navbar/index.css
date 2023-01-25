@@ -1,16 +1,15 @@
 .navbar {
-    font-family: 'Poppins';
-    font-style: normal;
-    background-color: #0E3746;
-    color: white;
-    padding: 14px;
-    width: 100%;
-    left: 0;
-    top: 0;
+  font-family: "Poppins";
+  font-style: normal;
+  background-color: #0e3746;
+  color: white;
+  padding: 14px;
+  width: 100%;
+  left: 0;
+  top: 0;
 }
 
 .nav-wrap {
-    padding: 35px;
-    width: 100%;
+  padding: 35px;
+  width: 100%;
 }
-
